@@ -1,0 +1,70 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# stat545lamke07
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of `stat545lamke07` is to have a collection of functions that can 
+quickly create toy data sets to test their statistical or machine learning
+model on. Many times one is interested in using simulated data, but these
+often need to be written out quickly. The `stat545lamke07` package therefore
+aims to make this process easier and in an orderly way.
+
+## Installation
+
+You can install the released version of `stat545lamke07` from the 
+[GitHub repository](https://github.com/lamke07/stat545lamke07)
+with:
+
+``` r
+devtools::install_github("lamke07/stat545lamke07")
+```
+
+## Example
+
+This is a basic example which shows you how to solve a common problem: the `generate_XY` function creates a data set where $Y$ is a linear combination of the columns in $X$. As such, a linear model on the full data set is expected to give a perfect fit.
+
+```{r example}
+library(stat545lamke07)
+
+# Obtain a quick data set S = (X,Y)
+df <- generate_XY()
+print(head(df))
+
+# Test a linear model
+m1 <- lm(Y ~., data = df)
+summary(m1)
+```
+
+It is possible to specify the individual parameters of the normal distribution for the columns of $X$:
+
+* $n$: the desired number of data points in the data set. The corresponding parameter will be `n`.
+* $\mu$: a $p$-dimensional vector of means. This can be any numeric vector. The corresponding parameter will be `mu`.
+* $\sigma$: a $p$-dimensional vector of standard deviations. The values of $\sigma$ must be non-negative. The corresponding parameter will be `sigma`.
+* $\beta$: a $p$-dimensional vector of coefficients. This can be any numeric vector. The corresponding parameter will be `beta_coefficients`.
+
+Below we have given an example of how one could possibly specify the parameters. We need to make sure that all the dimensions are correct.
+
+```{r example2}
+# Obtain a quick data set S = (X,Y)
+df <- generate_XY(n = 1000, mu = 1:10, sigma = 1:10, beta_coefficients = 1:10)
+print(head(df))
+
+# Test a linear model
+m1 <- lm(Y~ X1 + X2 + X3 + X4, data = df)
+summary(m1)
+```
