@@ -39,7 +39,7 @@ generate_XY <- function(n = 100, mu = rep(0, 10), sigma = rep(1,10), beta_coeffi
 
   p = length(mu)
 
-  out <- purrr::map2_dfc(mu, sigma, ~rnorm(n, .x, .y))
+  out <- suppressMessages(purrr::map2_dfc(mu, sigma, ~rnorm(n, .x, .y)))
   colnames(out)[1:p] <- paste0("X", 1:p)
 
   Y = as.vector(as.matrix(out) %*% beta_coefficients)

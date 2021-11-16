@@ -36,7 +36,9 @@ devtools::install_github("lamke07/stat545lamke07")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem: the `generate_XY` function creates a data set where $Y$ is a linear combination of the columns in $X$. As such, a linear model on the full data set is expected to give a perfect fit.
+This is a basic example which shows you how to solve a common problem: the `generate_XY` function
+creates a data set where $Y$ is a linear combination of the columns in $X$.
+As such, a linear model on the full data set is expected to give a perfect fit.
 
 ```{r example}
 library(stat545lamke07)
