@@ -10,8 +10,6 @@ test_that("Non-redundant (degenerate) inputs for mu, sigma, and beta.", {
 test_that("Example function output needs to match dimension", {
   expect_equal(dim(generate_XY(n = 40, mu = 1:8, sigma = 1:8, beta_coefficients = sample(1:50, 8))),
                c(40, 9))
-  expect_equal(is.data.frame(generate_XY(n = 40, mu = 1:8, sigma = 1:8, beta_coefficients = sample(1:50, 8))),
-               TRUE)
   expect_true(is.data.frame(generate_XY(n = 40, mu = 1:8, sigma = 1:8, beta_coefficients = sample(1:50, 8))))
 })
 
