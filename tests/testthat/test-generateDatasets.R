@@ -12,6 +12,7 @@ test_that("Example function output needs to match dimension", {
                c(40, 9))
   expect_equal(is.data.frame(generate_XY(n = 40, mu = 1:8, sigma = 1:8, beta_coefficients = sample(1:50, 8))),
                TRUE)
+  expect_true(is.data.frame(generate_XY(n = 40, mu = 1:8, sigma = 1:8, beta_coefficients = sample(1:50, 8))))
 })
 
 test_that("Mathematical assumptions check", {
