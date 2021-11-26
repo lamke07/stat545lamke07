@@ -1,3 +1,8 @@
+
+# stat545lamke07 1.0.2
+
+* Small updates to the GitHub repository.
+
 # stat545lamke07 1.0.0
 
 * First release of the `stat545lamke07` package.
