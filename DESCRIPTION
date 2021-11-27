@@ -1,6 +1,6 @@
 Package: stat545lamke07
 Title: Collection of functions to create quick data sets
-Version: 1.1.0
+Version: 2.0.0
 Authors@R: 
     person(given = "Kevin ",
            family = "Lam",
@@ -16,7 +16,6 @@ Imports:
     dplyr,
     magrittr,
     purrr,
-    qpdf,
     rlang
 Suggests: 
     rmarkdown,

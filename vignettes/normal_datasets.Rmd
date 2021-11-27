@@ -29,11 +29,17 @@ create data sets based on the **normal** distribution.
 The key component of the `stat545lamke07` package is the `generate_X()` function,
 which generates a data set $S = (X)$ where the columns of $X$ are normally distributed. The usage of such a data set is 
 extremely flexible, as we can transform the data set quickly. To run the `generate_X()`,
-all we requires is the number of data samples, as well as the right parametrization of $\mu$ and $\sigma$ (`mu` and `sigma`).
+all we require is the number of data samples, as well as the right parametrization of $\mu$ and $\sigma$ (`mu` and `sigma`).
 
 ```{r}
 df_X <- generate_X(n = 10, mu = rep(0,5), sigma = rep(2, 5))
 print(head(df_X))
+```
+
+It is then possible to perform experiments of interest, such as the eigendecomposition of the correlation matrix.
+
+```{r}
+eigen(cor(df_X))
 ```
 
 ### Generating only X and Y
@@ -42,7 +48,7 @@ Suppose we would like to understand the effect of including more variables in ou
 In addition to just generating $X$ using `generate_X()`, we can now specify the exact linear coefficients
 using the `beta_coefficients` parameter to obtain $$Y = X^T \beta$$ which leads to the data set
 $S = (X,Y)$. Note that we need to ensure that the number of columns of $X$ are the same as the number of coefficients
-in `beta_coefficients`. Ready to test this question with the use of `generate_XY()`, we first generate the data set.
+in `beta_coefficients`. With the use of `generate_XY()`, we first generate the data set.
 
 ```{r}
 df <- generate_XY(n = 1000, mu = rep(0,10), sigma = rep(2,10), beta_coefficients = 1:10)
@@ -61,7 +67,7 @@ m2 <- lm(Y~ X1 + X2 + X3 + X4 + X5 + X6, data = df)
 summary(m2)
 ```
 
-We can quickly modify our assumptions about the data set by changing the relevant paramters in the `generate_XY` function,
+We can quickly modify our assumptions about the data set by changing the relevant parameters in the `generate_XY()` function,
 namely `mu`, `sigma`, and `beta_coefficients`.
 
 ```{r}
@@ -73,12 +79,12 @@ print(head(df))
 
 So far we have assumed that $X$ contains only continuous variables. However, it is also possible to include 
 categorical variables in the data set. To this end, we have written the `generate_X_cat()` function that 
-additionally computes categorical factors, which can be achieved through the `no_of_cat` parameter.
+additionally computes categorical factors, which can be achieved through the `no_of_cat` parameter. For example,
 `no_of_cat = c(4,5)` is a vector where each entry corresponds to the number of categories in each column.
 In this case, we would have one column with 4 categories and 5 categories each.
 
 ```{r}
-df_cat <- generate_X_cat(n = 40, mu = 1:5, sigma = rep(1, 5), no_of_cat = c(2,3))
+df_cat <- generate_X_cat(n = 40, mu = 1:5, sigma = rep(1, 5), no_of_cat = c(4,5))
 print(head(df_cat))
 ```
 

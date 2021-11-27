@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">stat545lamke07</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.0</span>
       </span>
     </div>
 
@@ -80,8 +80,7 @@
 <div id="stat545lamke07" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#stat545lamke07" class="anchor"></a>stat545lamke07</h1></div>
-<!-- badges: start -->
-<!-- badges: end -->
+<p>Note: This package was created as part of the <a href="https://stat545.stat.ubc.ca/assignments/assignment-b4/">STAT545B Assignment 4</a> submission.</p>
 <p>The goal of <code>stat545lamke07</code> is to have a collection of functions that can quickly create toy data sets to test a statistical or machine learning model on. Many times one is interested in using simulated data, but these often need to be written out quickly. The <code>stat545lamke07</code> package aims to make this process easier and in an orderly way and provides simple data sets, including data sets based on the <strong>normal</strong> distribution and <strong>causal</strong> data sets.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
@@ -93,7 +92,7 @@
 <div id="quick-start" class="section level2">
 <h2 class="hasAnchor">
 <a href="#quick-start" class="anchor"></a>Quick Start</h2>
-<p>This is a basic example which shows you how to solve a common problem: the <code>generate_XY</code> function creates a data set where <em>Y</em> is a linear combination of the columns in <em>X</em>. As such, a linear model on the full data set is expected to give a perfect fit.</p>
+<p>This is a basic example which shows you how to solve a common problem: the <code><a href="reference/generate_XY.html">generate_XY()</a></code> function creates a data set where <em>Y</em> is a linear combination of the columns in <em>X</em>. As such, a linear model on the full data set is expected to give a perfect fit.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stat545lamke07)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtain a quick data set S = (X,Y)</span></span>
@@ -103,7 +102,7 @@
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Test a linear model</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span>., <span class="at">data =</span> df)</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code></pre></div>
-<p>It is possible to specify the individual parameters of the normal distribution for the columns of <em>X</em>:</p>
+<p>It is possible to specify the <strong>individual parameters</strong> of the normal distribution for the columns of <em>X</em>:</p>
 <ul>
 <li>
 <em>n</em>: the desired number of data points in the data set. The corresponding parameter will be <code>n</code>.</li>
@@ -122,7 +121,7 @@
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Test a linear model</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y<span class="sc">~</span> X1 <span class="sc">+</span> X2 <span class="sc">+</span> X3 <span class="sc">+</span> X4, <span class="at">data =</span> df)</span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code></pre></div>
-<p>We have also included an option to create causal toy data sets.</p>
+<p>We have also included functions to create <strong>causal</strong> toy data sets, <code><a href="reference/causal_XTY_binary.html">causal_XTY_binary()</a></code> and <code><a href="reference/causal_XTY_multiple.html">causal_XTY_multiple()</a></code> where the treatment effect is additive and the relationship between the outcomes <em>Y</em> and covariates <em>X</em> is linear.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtain a quick causal data set.</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>df_causal_binary <span class="ot">&lt;-</span> <span class="fu">causal_XTY_binary</span>()</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">head</span>(df_causal_binary))</span>

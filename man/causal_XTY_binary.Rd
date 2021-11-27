@@ -29,7 +29,7 @@ causal_XTY_binary(
 \value{
 A causal data set \eqn{S = (X,T,Y_0, Y_1, Y_{obs})}.
 In the default case, the \eqn{p} columns \eqn{X_i} are sampled from \eqn{N(0,1)} and the coefficients are all 1.
-We also have \eqn{n = 100}, \eqn{p = 4}, with beta-coefficients 1 to 10.
+We also have \eqn{n = 100}, \eqn{p = 4}, with beta-coefficients 1 to 4.
 The base treatment probability is 0.5 (i.e. a coin flip), with the default average treatment effect set to 10.
 }
 \description{
