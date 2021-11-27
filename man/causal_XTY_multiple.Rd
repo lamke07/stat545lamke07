@@ -38,7 +38,7 @@ The \eqn{p} columns of \eqn{X} are sampled from an independent Gaussian distribu
 standard deviation \eqn{\sigma_i}, i.e. \eqn{N(\mu_i, \sigma_i^2)}.
 A treatment \eqn{T} is sampled, where more than 2 treatments are possible.
 The observations \eqn{Y_i} correspond to the outcome if the treatment \eqn{i} is applied.
-The outcome \eqn{Y} is assumed to depend on \eqn{X} in a linear fashion, and the
+The outcome \eqn{Y = X^T \beta} is assumed to depend on \eqn{X} in a linear fashion, and the
 treatment effect of treatment \eqn{i} is additive.
 See Causality (Pearl 2009) for further details and a general introduction to causal inference.
 }

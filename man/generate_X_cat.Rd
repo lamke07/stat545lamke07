@@ -2,7 +2,7 @@
 % Please edit documentation in R/generate_normal.R
 \name{generate_X_cat}
 \alias{generate_X_cat}
-\title{Simulating a normal data set \eqn{S} that includes categorical variables.}
+\title{Simulating a normal data set \eqn{S = (X, X_{cat})} that includes categorical variables.}
 \usage{
 generate_X_cat(
   n = 100,
@@ -18,20 +18,20 @@ generate_X_cat(
 
 \item{sigma}{a \eqn{p_1}-dimensional vector of non-negative standard deviations for \eqn{\sigma}.}
 
-\item{no_of_cat}{a \eqn{p_2}-dimensional vector where the entries indicate the number of categories desired for each column of \eqn{X_2}.}
+\item{no_of_cat}{a \eqn{p_2}-dimensional vector where the entries indicate the number of categories desired for each column of \eqn{X_{cat}}.}
 }
 \value{
-An \eqn{n \times p} dimensional data frame given by \eqn{S = (X_1, X_2)}.
-In the base case, the columns of \eqn{X_1} are sampled from \eqn{N(0,1)}, \eqn{n = 100} and \eqn{p = 10},
-and two additional categorical columns of \eqn{X_2} are added.
+An \eqn{n \times (p_1 + p_2)} dimensional data frame given by \eqn{S = (X, X_{cat})}.
+In the base case, the columns of \eqn{X} are sampled from \eqn{N(0,1)}, \eqn{n = 100} and \eqn{p_1 = 10, p_2 = 2},
+and two additional categorical columns of \eqn{X_{cat}} are added.
 }
 \description{
-Creates a data set \eqn{S = (X_1, X_2)} where the columns of \eqn{X_1}
+Creates a data set \eqn{S = (X, X_{cat})} where the columns of \eqn{X}
 are sampled from an independent Gaussian distribution with mean \eqn{\mu_i} and
 standard deviation \eqn{\sigma_i}, i.e. \eqn{N(\mu_i, \sigma_i^2)},
-and the columns of \eqn{X_2} are categorical, sampled with replacement from a given number of categories (indexed by numbers).
+and the columns of \eqn{X_{cat}} are categorical, sampled with replacement from a given number of categories (indexed by numbers).
 The final dimension will be \eqn{n \times (p_1 + p_2)},
-where \eqn{p_1} is the number of columns in \eqn{X_1} and \eqn{p_2} is the number of columns in \eqn{X_2},
+where \eqn{p_1} is the number of columns in \eqn{X} and \eqn{p_2} is the number of columns in \eqn{X_{cat}},
 with the number of data points \eqn{n} to be specified.
 }
 \examples{

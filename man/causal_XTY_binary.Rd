@@ -30,7 +30,7 @@ causal_XTY_binary(
 A causal data set \eqn{S = (X,T,Y_0, Y_1, Y_{obs})}.
 In the base case, the columns \eqn{X_i} are sampled from \eqn{N(0,1)} and the coefficients are all 1.
 We also have \eqn{n = 100}, \eqn{p = 4}, with beta-coefficients 1 to 10.
-The treatment probability is 0.5 (i.e. a coin flip), with the default average treatment effect being 10.
+The base treatment probability is 0.5 (i.e. a coin flip), with the default average treatment effect being 10.
 }
 \description{
 Creates a causal data set \eqn{S = (X,T,Y_0, Y_1, Y_{obs})} for causal inference.
@@ -38,8 +38,8 @@ The \eqn{p} columns of \eqn{X} are sampled from an independent Gaussian distribu
 standard deviation \eqn{\sigma_i}, i.e. \eqn{N(\mu_i, \sigma_i^2)}.
 A binary treatment \eqn{T} taking values 0 or 1 is sampled with probability \eqn{p_{treatment}}.
 The observations \eqn{Y_0, Y_1} correspond to the outcome if the treatment \eqn{T} is 0 or 1, respectively,
-while \eqn{T} is the actual treatment observed and corresponds to \eqn{Y_{observed}}.
-The outcome \eqn{Y} is assumed to depend on \eqn{X} in a linear fashion,
+while \eqn{T} is the actual treatment observed and corresponds to \eqn{Y_{obs}}.
+The outcome \eqn{Y  = X^T \beta} is assumed to depend on \eqn{X} in a linear fashion,
 so the average treatment effect can be pre-specified to obtain the right data set.
 See Causality (Pearl 2009) for further details and a general introduction to causal inference.
 }

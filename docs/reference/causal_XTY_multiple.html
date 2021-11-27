@@ -45,7 +45,7 @@ The \(p\) columns of \(X\) are sampled from an independent Gaussian distribution
 standard deviation \(\sigma_i\), i.e. \(N(\mu_i, \sigma_i^2)\).
 A treatment \(T\) is sampled, where more than 2 treatments are possible.
 The observations \(Y_i\) correspond to the outcome if the treatment \(i\) is applied.
-The outcome \(Y\) is assumed to depend on \(X\) in a linear fashion, and the
+The outcome \(Y = X^T \beta\) is assumed to depend on \(X\) in a linear fashion, and the
 treatment effect of treatment \(i\) is additive.
 See Causality (Pearl 2009) for further details and a general introduction to causal inference." />
 
@@ -79,7 +79,7 @@ See Causality (Pearl 2009) for further details and a general introduction to cau
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">stat545lamke07</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
       </span>
     </div>
 
@@ -93,6 +93,21 @@ See Causality (Pearl 2009) for further details and a general introduction to cau
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/causal_datasets.html">Causal Data Sets</a>
+    </li>
+    <li>
+      <a href="../articles/normal_datasets.html">Normal Data Sets</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -124,7 +139,7 @@ The \(p\) columns of \(X\) are sampled from an independent Gaussian distribution
 standard deviation \(\sigma_i\), i.e. \(N(\mu_i, \sigma_i^2)\).
 A treatment \(T\) is sampled, where more than 2 treatments are possible.
 The observations \(Y_i\) correspond to the outcome if the treatment \(i\) is applied.
-The outcome \(Y\) is assumed to depend on \(X\) in a linear fashion, and the
+The outcome \(Y = X^T \beta\) is assumed to depend on \(X\) in a linear fashion, and the
 treatment effect of treatment \(i\) is additive.
 See Causality (Pearl 2009) for further details and a general introduction to causal inference.</p>
     </div>

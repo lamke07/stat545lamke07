@@ -1,2 +1,13 @@
 url: ~
 
+reference:
+- title: "Normal data sets"
+  desc: "Creating data sets using normal distribution"
+- contents:
+  - generate_X
+  - generate_X_cat
+  - generate_XY
+- title: "Causal data sets"
+  desc: "Creating data sets that contain additional potential outcomes"
+- contents:
+  - starts_with("causal_")

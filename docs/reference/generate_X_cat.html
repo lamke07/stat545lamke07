@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Simulating a normal data set \(S\) that includes categorical variables. — generate_X_cat • stat545lamke07</title>
+<title>Simulating a normal data set \(S = (X, X_{cat})\) that includes categorical variables. — generate_X_cat • stat545lamke07</title>
 
 
 <!-- jquery -->
@@ -39,13 +39,13 @@
 
 
 
-<meta property="og:title" content="Simulating a normal data set \(S\) that includes categorical variables. — generate_X_cat" />
-<meta property="og:description" content="Creates a data set \(S = (X_1, X_2)\) where the columns of \(X_1\)
+<meta property="og:title" content="Simulating a normal data set \(S = (X, X_{cat})\) that includes categorical variables. — generate_X_cat" />
+<meta property="og:description" content="Creates a data set \(S = (X, X_{cat})\) where the columns of \(X\)
 are sampled from an independent Gaussian distribution with mean \(\mu_i\) and
 standard deviation \(\sigma_i\), i.e. \(N(\mu_i, \sigma_i^2)\),
-and the columns of \(X_2\) are categorical, sampled with replacement from a given number of categories (indexed by numbers).
+and the columns of \(X_{cat}\) are categorical, sampled with replacement from a given number of categories (indexed by numbers).
 The final dimension will be \(n \times (p_1 + p_2)\),
-where \(p_1\) is the number of columns in \(X_1\) and \(p_2\) is the number of columns in \(X_2\),
+where \(p_1\) is the number of columns in \(X\) and \(p_2\) is the number of columns in \(X_{cat}\),
 with the number of data points \(n\) to be specified." />
 
 
@@ -78,7 +78,7 @@ with the number of data points \(n\) to be specified." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">stat545lamke07</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
       </span>
     </div>
 
@@ -92,6 +92,21 @@ with the number of data points \(n\) to be specified." />
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/causal_datasets.html">Causal Data Sets</a>
+    </li>
+    <li>
+      <a href="../articles/normal_datasets.html">Normal Data Sets</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -112,18 +127,18 @@ with the number of data points \(n\) to be specified." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Simulating a normal data set \(S\) that includes categorical variables.</h1>
+    <h1>Simulating a normal data set \(S = (X, X_{cat})\) that includes categorical variables.</h1>
     
     <div class="hidden name"><code>generate_X_cat.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Creates a data set \(S = (X_1, X_2)\) where the columns of \(X_1\)
+    <p>Creates a data set \(S = (X, X_{cat})\) where the columns of \(X\)
 are sampled from an independent Gaussian distribution with mean \(\mu_i\) and
 standard deviation \(\sigma_i\), i.e. \(N(\mu_i, \sigma_i^2)\),
-and the columns of \(X_2\) are categorical, sampled with replacement from a given number of categories (indexed by numbers).
+and the columns of \(X_{cat}\) are categorical, sampled with replacement from a given number of categories (indexed by numbers).
 The final dimension will be \(n \times (p_1 + p_2)\),
-where \(p_1\) is the number of columns in \(X_1\) and \(p_2\) is the number of columns in \(X_2\),
+where \(p_1\) is the number of columns in \(X\) and \(p_2\) is the number of columns in \(X_{cat}\),
 with the number of data points \(n\) to be specified.</p>
     </div>
 
@@ -151,15 +166,15 @@ with the number of data points \(n\) to be specified.</p>
     </tr>
     <tr>
       <th>no_of_cat</th>
-      <td><p>a \(p_2\)-dimensional vector where the entries indicate the number of categories desired for each column of \(X_2\).</p></td>
+      <td><p>a \(p_2\)-dimensional vector where the entries indicate the number of categories desired for each column of \(X_{cat}\).</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An \(n \times p\) dimensional data frame given by \(S = (X_1, X_2)\).
-In the base case, the columns of \(X_1\) are sampled from \(N(0,1)\), \(n = 100\) and \(p = 10\),
-and two additional categorical columns of \(X_2\) are added.</p>
+    <p>An \(n \times (p_1 + p_2)\) dimensional data frame given by \(S = (X, X_{cat})\).
+In the base case, the columns of \(X\) are sampled from \(N(0,1)\), \(n = 100\) and \(p_1 = 10, p_2 = 2\),
+and two additional categorical columns of \(X_{cat}\) are added.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='r-in'><span class='fu'>generate_X_cat</span><span class='op'>(</span><span class='op'>)</span></span>

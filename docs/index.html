@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">stat545lamke07</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
       </span>
     </div>
 
@@ -45,6 +45,21 @@
 </li>
 <li>
   <a href="reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="articles/causal_datasets.html">Causal Data Sets</a>
+    </li>
+    <li>
+      <a href="articles/normal_datasets.html">Normal Data Sets</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="news/index.html">Changelog</a>
@@ -67,7 +82,7 @@
 <a href="#stat545lamke07" class="anchor"></a>stat545lamke07</h1></div>
 <!-- badges: start -->
 <!-- badges: end -->
-<p>The goal of <code>stat545lamke07</code> is to have a collection of functions that can quickly create toy data sets to test their statistical or machine learning model on. Many times one is interested in using simulated data, but these often need to be written out quickly. The <code>stat545lamke07</code> package therefore aims to make this process easier and in an orderly way.</p>
+<p>The goal of <code>stat545lamke07</code> is to have a collection of functions that can quickly create toy data sets to test a statistical or machine learning model on. Many times one is interested in using simulated data, but these often need to be written out quickly. The <code>stat545lamke07</code> package aims to make this process easier and in an orderly way and provides simple data sets, including data sets based on the <strong>normal</strong> distribution and <strong>causal</strong> data sets.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
@@ -75,58 +90,19 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"lamke07/stat545lamke07"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="example" class="section level2">
+<div id="quick-start" class="section level2">
 <h2 class="hasAnchor">
-<a href="#example" class="anchor"></a>Example</h2>
+<a href="#quick-start" class="anchor"></a>Quick Start</h2>
 <p>This is a basic example which shows you how to solve a common problem: the <code>generate_XY</code> function creates a data set where <em>Y</em> is a linear combination of the columns in <em>X</em>. As such, a linear model on the full data set is expected to give a perfect fit.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">stat545lamke07</span><span class="op">)</span>
-
-<span class="co"># Obtain a quick data set S = (X,Y)</span>
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/generate_XY.html">generate_XY</a></span><span class="op">(</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 6 × 11</span>
-<span class="co">#&gt;         X1      X2     X3     X4     X5       X6     X7      X8      X9     X10</span>
-<span class="co">#&gt;      &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 -0.161    0.0708  1.01   0.864  1.28   1.06     0.565 -0.508   0.703   1.01  </span>
-<span class="co">#&gt; 2 -0.557    0.342  -0.695  1.82  -0.561 -0.138   -1.33  -1.74   -0.0868  0.615 </span>
-<span class="co">#&gt; 3  0.583    0.575  -2.11  -1.30   1.05  -0.00676  0.139  0.636   0.163  -0.659 </span>
-<span class="co">#&gt; 4 -0.806    1.17    0.719  1.67   0.109  0.196   -0.490  0.217  -0.114   0.0797</span>
-<span class="co">#&gt; 5  0.00819 -0.836  -1.21  -0.318  0.821  0.390   -1.15  -0.0418  0.684   0.240 </span>
-<span class="co">#&gt; 6  0.0694  -2.61   -0.160  1.23  -0.150 -0.989    0.507 -0.140   1.51   -0.143 </span>
-<span class="co">#&gt; # … with 1 more variable: Y &lt;dbl&gt;</span>
-
-<span class="co"># Test a linear model</span>
-<span class="va">m1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Y</span> <span class="op">~</span><span class="va">.</span>, data <span class="op">=</span> <span class="va">df</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">m1</span><span class="op">)</span>
-<span class="co">#&gt; Warning in summary.lm(m1): essentially perfect fit: summary may be unreliable</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Call:</span>
-<span class="co">#&gt; lm(formula = Y ~ ., data = df)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Residuals:</span>
-<span class="co">#&gt;        Min         1Q     Median         3Q        Max </span>
-<span class="co">#&gt; -6.014e-14 -1.561e-15  1.621e-15  3.786e-15  2.552e-14 </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Coefficients:</span>
-<span class="co">#&gt;               Estimate Std. Error    t value Pr(&gt;|t|)    </span>
-<span class="co">#&gt; (Intercept) -5.389e-16  9.713e-16 -5.550e-01     0.58    </span>
-<span class="co">#&gt; X1           1.000e+00  1.103e-15  9.063e+14   &lt;2e-16 ***</span>
-<span class="co">#&gt; X2           2.000e+00  1.067e-15  1.874e+15   &lt;2e-16 ***</span>
-<span class="co">#&gt; X3           3.000e+00  1.095e-15  2.741e+15   &lt;2e-16 ***</span>
-<span class="co">#&gt; X4           4.000e+00  9.824e-16  4.072e+15   &lt;2e-16 ***</span>
-<span class="co">#&gt; X5           5.000e+00  9.915e-16  5.043e+15   &lt;2e-16 ***</span>
-<span class="co">#&gt; X6           6.000e+00  1.051e-15  5.707e+15   &lt;2e-16 ***</span>
-<span class="co">#&gt; X7           7.000e+00  1.007e-15  6.951e+15   &lt;2e-16 ***</span>
-<span class="co">#&gt; X8           8.000e+00  1.018e-15  7.857e+15   &lt;2e-16 ***</span>
-<span class="co">#&gt; X9           9.000e+00  9.233e-16  9.747e+15   &lt;2e-16 ***</span>
-<span class="co">#&gt; X10          1.000e+01  1.033e-15  9.684e+15   &lt;2e-16 ***</span>
-<span class="co">#&gt; ---</span>
-<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Residual standard error: 9.388e-15 on 89 degrees of freedom</span>
-<span class="co">#&gt; Multiple R-squared:      1,  Adjusted R-squared:      1 </span>
-<span class="co">#&gt; F-statistic: 4.133e+31 on 10 and 89 DF,  p-value: &lt; 2.2e-16</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stat545lamke07)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtain a quick data set S = (X,Y)</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">generate_XY</span>()</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">head</span>(df))</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Test a linear model</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span>., <span class="at">data =</span> df)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code></pre></div>
 <p>It is possible to specify the individual parameters of the normal distribution for the columns of <em>X</em>:</p>
 <ul>
 <li>
@@ -139,44 +115,20 @@
 <em>β</em>: a <em>p</em>-dimensional vector of coefficients. This can be any numeric vector. The corresponding parameter will be <code>beta_coefficients</code>.</li>
 </ul>
 <p>Below we have given an example of how one could possibly specify the parameters. We need to make sure that all the dimensions are correct.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Obtain a quick data set S = (X,Y)</span>
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/generate_XY.html">generate_XY</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1000</span>, mu <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, sigma <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, beta_coefficients <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 6 × 11</span>
-<span class="co">#&gt;       X1    X2    X3    X4     X5     X6     X7      X8    X9    X10     Y</span>
-<span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt; 1  2.04  2.56  4.53   8.74  8.69  -4.37  10.9     8.52   6.98  8.99   370.</span>
-<span class="co">#&gt; 2  2.05  0.135 2.70  -6.85  8.43  10.4   10.8     9.75  10.7  20.7    544.</span>
-<span class="co">#&gt; 3  1.57  2.89  1.44  11.1   0.298 10.4   12.7   -12.6    8.16  4.08   222.</span>
-<span class="co">#&gt; 4  2.46  0.932 4.44  18.2  -1.45   5.88   5.22   10.9   16.4   0.675  397.</span>
-<span class="co">#&gt; 5  0.558 0.272 3.58   5.07  5.36  -4.58   6.98    0.476 16.7   3.16   266.</span>
-<span class="co">#&gt; 6 -0.645 4.10  0.546  6.46  6.03   0.686 -0.789  17.5   -1.15 10.9    302.</span>
-
-<span class="co"># Test a linear model</span>
-<span class="va">m1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Y</span><span class="op">~</span> <span class="va">X1</span> <span class="op">+</span> <span class="va">X2</span> <span class="op">+</span> <span class="va">X3</span> <span class="op">+</span> <span class="va">X4</span>, data <span class="op">=</span> <span class="va">df</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">m1</span><span class="op">)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Call:</span>
-<span class="co">#&gt; lm(formula = Y ~ X1 + X2 + X3 + X4, data = df)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Residuals:</span>
-<span class="co">#&gt;     Min      1Q  Median      3Q     Max </span>
-<span class="co">#&gt; -447.56 -113.37   -1.72  111.00  552.25 </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Coefficients:</span>
-<span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    </span>
-<span class="co">#&gt; (Intercept) 340.2594    11.3812  29.897  &lt; 2e-16 ***</span>
-<span class="co">#&gt; X1            0.1963     5.0984   0.038  0.96930    </span>
-<span class="co">#&gt; X2            3.7334     2.4280   1.538  0.12446    </span>
-<span class="co">#&gt; X3            5.3406     1.7269   3.093  0.00204 ** </span>
-<span class="co">#&gt; X4            5.0864     1.2323   4.127 3.98e-05 ***</span>
-<span class="co">#&gt; ---</span>
-<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Residual standard error: 158 on 995 degrees of freedom</span>
-<span class="co">#&gt; Multiple R-squared:  0.02837,    Adjusted R-squared:  0.02447 </span>
-<span class="co">#&gt; F-statistic: 7.263 on 4 and 995 DF,  p-value: 9.137e-06</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtain a quick data set S = (X,Y)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">generate_XY</span>(<span class="at">n =</span> <span class="dv">1000</span>, <span class="at">mu =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">sigma =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">beta_coefficients =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">head</span>(df))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Test a linear model</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y<span class="sc">~</span> X1 <span class="sc">+</span> X2 <span class="sc">+</span> X3 <span class="sc">+</span> X4, <span class="at">data =</span> df)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code></pre></div>
+<p>We have also included an option to create causal toy data sets.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtain a quick causal data set.</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>df_causal_binary <span class="ot">&lt;-</span> <span class="fu">causal_XTY_binary</span>()</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">head</span>(df_causal_binary))</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>df_causal_multiple <span class="ot">&lt;-</span> <span class="fu">causal_XTY_multiple</span>()</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">head</span>(df_causal_multiple))</span></code></pre></div>
 </div>
 </div>
   </div>
