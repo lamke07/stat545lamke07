@@ -34,6 +34,13 @@ with:
 devtools::install_github("lamke07/stat545lamke07")
 ```
 
+Note: when using `devtools::check()`, you might need to have `qpdf` installed locally,
+otherwise you may run into a warning with the following message.
+
+> WARNING 
+> 
+> ‘qpdf’ is needed for checks on size reduction of PDFs
+
 ## Quick Start
 
 This is a basic example which shows you how to solve a common problem: the `generate_XY()` function

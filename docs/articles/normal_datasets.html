@@ -102,28 +102,28 @@
 <code class="sourceCode R"><span class="va">df_X</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/generate_X.html">generate_X</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, mu <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">5</span><span class="op">)</span>, sigma <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df_X</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 5</span>
-<span class="co">#&gt;      X1     X2     X3     X4     X5</span>
-<span class="co">#&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 0.615  1.08  -0.670  0.166 -0.811</span>
-<span class="co">#&gt; 2 0.605  2.38  -2.99   2.17   3.45 </span>
-<span class="co">#&gt; 3 3.61   0.873  1.96  -2.30  -2.32 </span>
-<span class="co">#&gt; 4 0.529 -0.434 -3.62   0.392  2.51 </span>
-<span class="co">#&gt; 5 3.10  -0.330 -1.43   4.01   1.06 </span>
-<span class="co">#&gt; 6 0.871  3.23  -2.72   1.79   0.941</span></code></pre></div>
+<span class="co">#&gt;       X1      X2     X3     X4     X5</span>
+<span class="co">#&gt;    &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;</span>
+<span class="co">#&gt; 1  0.767 -1.58    2.61  -1.25   0.337</span>
+<span class="co">#&gt; 2  0.592  0.308   0.423 -3.23  -3.19 </span>
+<span class="co">#&gt; 3 -2.25   1.54    0.994 -1.79  -1.25 </span>
+<span class="co">#&gt; 4  0.902  2.03    2.30  -0.863 -0.411</span>
+<span class="co">#&gt; 5  1.22   0.306   0.279  2.89  -1.23 </span>
+<span class="co">#&gt; 6 -3.22  -0.0913 -0.375  2.25   3.77</span></code></pre></div>
 <p>It is then possible to perform experiments of interest, such as the eigendecomposition of the correlation matrix.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/eigen.html">eigen</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">df_X</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; eigen() decomposition</span>
 <span class="co">#&gt; $values</span>
-<span class="co">#&gt; [1] 2.17091550 1.72989083 0.66863348 0.36191607 0.06864411</span>
+<span class="co">#&gt; [1] 1.7744026 1.4113682 0.8897756 0.5852801 0.3391735</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $vectors</span>
-<span class="co">#&gt;             [,1]       [,2]       [,3]         [,4]        [,5]</span>
-<span class="co">#&gt; [1,] -0.40028909  0.4779158  0.3489366  0.695885221 -0.07315851</span>
-<span class="co">#&gt; [2,] -0.08662583  0.5523967 -0.8252843 -0.007095682  0.07879957</span>
-<span class="co">#&gt; [3,] -0.52139623 -0.4469430 -0.1806331  0.169451025  0.68340762</span>
-<span class="co">#&gt; [4,]  0.46651867 -0.3987377 -0.3376956  0.694052911 -0.16619500</span>
-<span class="co">#&gt; [5,]  0.58546641  0.3281837  0.2246832  0.072596948  0.70268891</span></code></pre></div>
+<span class="co">#&gt;            [,1]       [,2]         [,3]        [,4]       [,5]</span>
+<span class="co">#&gt; [1,]  0.1842539  0.6456376  0.538412540 -0.15011786 -0.4865996</span>
+<span class="co">#&gt; [2,]  0.3564366  0.3407067 -0.798898926  0.10293005 -0.3286911</span>
+<span class="co">#&gt; [3,]  0.4308489 -0.5106050  0.007819257 -0.68307210 -0.2949629</span>
+<span class="co">#&gt; [4,] -0.4979355  0.3728366 -0.253028451 -0.70026037  0.2422088</span>
+<span class="co">#&gt; [5,] -0.6367361 -0.2595119 -0.088249109  0.09958889 -0.7138031</span></code></pre></div>
 </div>
 <div id="generating-only-x-and-y" class="section level3">
 <h3 class="hasAnchor">
@@ -133,14 +133,14 @@
 <code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/generate_XY.html">generate_XY</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1000</span>, mu <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">10</span><span class="op">)</span>, sigma <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">10</span><span class="op">)</span>, beta_coefficients <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 11</span>
-<span class="co">#&gt;       X1     X2     X3      X4     X5     X6     X7       X8     X9    X10</span>
-<span class="co">#&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 -6.70  -0.209 -2.04  -3.24    1.57   1.27   0.900 -0.680   -0.548  1.94 </span>
-<span class="co">#&gt; 2  1.58  -2.30   0.889 -0.0416  1.70  -0.419  2.14  -2.63     0.419 -1.29 </span>
-<span class="co">#&gt; 3  4.55   0.423  2.91  -0.718   0.194  2.17   1.44   0.968    1.51   1.85 </span>
-<span class="co">#&gt; 4  1.58   0.839 -2.57   0.860  -0.626 -1.74  -0.791  0.00886 -2.45  -2.03 </span>
-<span class="co">#&gt; 5  2.72   0.217  1.44   0.981   2.44   4.24  -1.98  -3.24    -2.50   0.125</span>
-<span class="co">#&gt; 6  0.670  0.103 -4.24   1.05   -2.08   0.288  1.06   0.905   -0.968  2.78 </span>
+<span class="co">#&gt;        X1      X2      X3     X4     X5     X6     X7     X8      X9    X10</span>
+<span class="co">#&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;</span>
+<span class="co">#&gt; 1  0.0717  0.0460 -0.963  -1.66   0.270 -0.359 -1.88  -1.04  -0.224  -0.932</span>
+<span class="co">#&gt; 2  0.797   4.29   -1.54    1.49  -0.891 -0.852  0.528 -1.29  -2.98   -0.366</span>
+<span class="co">#&gt; 3  1.31    0.652   1.59    1.86   1.09   0.289 -1.09   0.743  4.13   -3.46 </span>
+<span class="co">#&gt; 4 -0.599  -0.983   1.29    3.94  -4.43   0.526  3.06  -1.70   0.0554  0.582</span>
+<span class="co">#&gt; 5 -0.786   1.13   -0.551   2.62  -0.629  3.92   0.925  2.44  -0.680   1.16 </span>
+<span class="co">#&gt; 6 -1.08    0.894  -0.0962  0.815 -0.517  1.76  -0.327  1.73   0.981   0.897</span>
 <span class="co">#&gt; # … with 1 more variable: Y &lt;dbl&gt;</span></code></pre></div>
 <p>Having generated the data set, we can now fit some linear models as well.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
@@ -153,20 +153,20 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Residuals:</span>
 <span class="co">#&gt;      Min       1Q   Median       3Q      Max </span>
-<span class="co">#&gt; -173.665  -26.486    0.174   28.687  138.666 </span>
+<span class="co">#&gt; -115.590  -25.787   -0.312   27.258  145.417 </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Coefficients:</span>
 <span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    </span>
-<span class="co">#&gt; (Intercept)   2.1385     1.2637   1.692  0.09090 .  </span>
-<span class="co">#&gt; X1            1.5848     0.6243   2.538  0.01128 *  </span>
-<span class="co">#&gt; X2            1.9100     0.6136   3.113  0.00191 ** </span>
-<span class="co">#&gt; X3            3.9068     0.6323   6.179  9.4e-10 ***</span>
+<span class="co">#&gt; (Intercept)  -1.3469     1.2420  -1.084   0.2784    </span>
+<span class="co">#&gt; X1            1.3944     0.6226   2.240   0.0253 *  </span>
+<span class="co">#&gt; X2            2.4800     0.6063   4.091 4.65e-05 ***</span>
+<span class="co">#&gt; X3            3.4045     0.6148   5.538 3.92e-08 ***</span>
 <span class="co">#&gt; ---</span>
 <span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; Residual standard error: 39.96 on 996 degrees of freedom</span>
-<span class="co">#&gt; Multiple R-squared:  0.05326,    Adjusted R-squared:  0.05041 </span>
-<span class="co">#&gt; F-statistic: 18.68 on 3 and 996 DF,  p-value: 8.62e-12</span>
+<span class="co">#&gt; Residual standard error: 39.24 on 996 degrees of freedom</span>
+<span class="co">#&gt; Multiple R-squared:  0.04865,    Adjusted R-squared:  0.04578 </span>
+<span class="co">#&gt; F-statistic: 16.98 on 3 and 996 DF,  p-value: 9.273e-11</span>
 
 <span class="co"># Test a linear model with 6 variables</span>
 <span class="va">m2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Y</span><span class="op">~</span> <span class="va">X1</span> <span class="op">+</span> <span class="va">X2</span> <span class="op">+</span> <span class="va">X3</span> <span class="op">+</span> <span class="va">X4</span> <span class="op">+</span> <span class="va">X5</span> <span class="op">+</span> <span class="va">X6</span>, data <span class="op">=</span> <span class="va">df</span><span class="op">)</span>
@@ -176,24 +176,24 @@
 <span class="co">#&gt; lm(formula = Y ~ X1 + X2 + X3 + X4 + X5 + X6, data = df)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Residuals:</span>
-<span class="co">#&gt;      Min       1Q   Median       3Q      Max </span>
-<span class="co">#&gt; -137.097  -24.308   -0.807   24.852  139.416 </span>
+<span class="co">#&gt;     Min      1Q  Median      3Q     Max </span>
+<span class="co">#&gt; -93.847 -23.281  -0.145  22.820 156.580 </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Coefficients:</span>
 <span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    </span>
-<span class="co">#&gt; (Intercept)   2.0398     1.1182   1.824  0.06843 .  </span>
-<span class="co">#&gt; X1            1.6730     0.5532   3.024  0.00256 ** </span>
-<span class="co">#&gt; X2            2.2172     0.5432   4.082 4.83e-05 ***</span>
-<span class="co">#&gt; X3            3.3939     0.5608   6.051 2.03e-09 ***</span>
-<span class="co">#&gt; X4            3.8752     0.5604   6.915 8.35e-12 ***</span>
-<span class="co">#&gt; X5            6.2541     0.5824  10.739  &lt; 2e-16 ***</span>
-<span class="co">#&gt; X6            6.0176     0.5674  10.605  &lt; 2e-16 ***</span>
+<span class="co">#&gt; (Intercept)  -0.8066     1.0993  -0.734    0.463    </span>
+<span class="co">#&gt; X1            1.2840     0.5510   2.330    0.020 *  </span>
+<span class="co">#&gt; X2            2.1752     0.5365   4.054 5.43e-05 ***</span>
+<span class="co">#&gt; X3            3.1231     0.5463   5.717 1.44e-08 ***</span>
+<span class="co">#&gt; X4            3.7432     0.5517   6.785 1.99e-11 ***</span>
+<span class="co">#&gt; X5            6.1347     0.5476  11.204  &lt; 2e-16 ***</span>
+<span class="co">#&gt; X6            6.1196     0.5707  10.723  &lt; 2e-16 ***</span>
 <span class="co">#&gt; ---</span>
 <span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; Residual standard error: 35.34 on 993 degrees of freedom</span>
-<span class="co">#&gt; Multiple R-squared:  0.2618, Adjusted R-squared:  0.2573 </span>
-<span class="co">#&gt; F-statistic: 58.68 on 6 and 993 DF,  p-value: &lt; 2.2e-16</span></code></pre></div>
+<span class="co">#&gt; Residual standard error: 34.71 on 993 degrees of freedom</span>
+<span class="co">#&gt; Multiple R-squared:  0.2581, Adjusted R-squared:  0.2536 </span>
+<span class="co">#&gt; F-statistic: 57.57 on 6 and 993 DF,  p-value: &lt; 2.2e-16</span></code></pre></div>
 <p>We can quickly modify our assumptions about the data set by changing the relevant parameters in the <code><a href="../reference/generate_XY.html">generate_XY()</a></code> function, namely <code>mu</code>, <code>sigma</code>, and <code>beta_coefficients</code>.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/generate_XY.html">generate_XY</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1000</span>, mu <span class="op">=</span> <span class="fl">51</span><span class="op">:</span><span class="fl">55</span>, sigma <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">15</span>, length.out <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>, beta_coefficients <span class="op">=</span> <span class="fl">21</span><span class="op">:</span><span class="fl">25</span><span class="op">)</span>
@@ -201,12 +201,12 @@
 <span class="co">#&gt; # A tibble: 6 × 6</span>
 <span class="co">#&gt;      X1    X2    X3    X4    X5     Y</span>
 <span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt; 1  39.8  54.7  60.2  40.3  73.3 6221.</span>
-<span class="co">#&gt; 2  43.1  42.1  29.1  81.2  70.7 6215.</span>
-<span class="co">#&gt; 3  52.2  48.5  66.7  45.6  49.8 6038.</span>
-<span class="co">#&gt; 4  53.0  47.2  59.1  78.1  66.8 7053.</span>
-<span class="co">#&gt; 5  57.3  60.6  65.1  63.0  58.2 7000.</span>
-<span class="co">#&gt; 6  44.0  68.0  64.1  43.4  90.8 7205.</span></code></pre></div>
+<span class="co">#&gt; 1  33.1  73.5  43.5  68.7  51.1 6240.</span>
+<span class="co">#&gt; 2  46.5  62.5  35.9  78.6  40.7 6080.</span>
+<span class="co">#&gt; 3  44.2  59.1  32.8  73.5  63.9 6344.</span>
+<span class="co">#&gt; 4  58.1  53.9  45.7  51.5  47.4 5878.</span>
+<span class="co">#&gt; 5  54.6  54.4  46.9  68.5  63.3 6651.</span>
+<span class="co">#&gt; 6  53.1  39.4  71.7  75.4  81.3 7471.</span></code></pre></div>
 </div>
 <div id="generating-x-with-categorical-variables" class="section level3">
 <h3 class="hasAnchor">
@@ -216,14 +216,14 @@
 <code class="sourceCode R"><span class="va">df_cat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/generate_X_cat.html">generate_X_cat</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">40</span>, mu <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, sigma <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">5</span><span class="op">)</span>, no_of_cat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">5</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df_cat</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 7</span>
-<span class="co">#&gt;      X1    X2    X3    X4    X5 X6    X7   </span>
-<span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt;</span>
-<span class="co">#&gt; 1 0.337  1.14  3.45  3.77  2.96 1     3    </span>
-<span class="co">#&gt; 2 1.31   2.41  2.26  4.47  3.57 4     4    </span>
-<span class="co">#&gt; 3 1.60   1.07  2.69  5.05  2.99 3     2    </span>
-<span class="co">#&gt; 4 0.551  1.60  2.29  4.55  4.84 3     3    </span>
-<span class="co">#&gt; 5 0.267  4.38  5.11  4.96  6.14 1     2    </span>
-<span class="co">#&gt; 6 1.86   3.73  2.89  5.56  4.41 4     2</span></code></pre></div>
+<span class="co">#&gt;       X1    X2    X3    X4    X5 X6    X7   </span>
+<span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt;</span>
+<span class="co">#&gt; 1  1.46  2.22  3.26   4.96  5.78 1     5    </span>
+<span class="co">#&gt; 2 -1.83  3.88  4.20   4.71  5.27 2     5    </span>
+<span class="co">#&gt; 3  2.46  0.101 5.63   4.23  3.20 2     2    </span>
+<span class="co">#&gt; 4 -0.468 2.65  0.222  4.02  5.06 3     2    </span>
+<span class="co">#&gt; 5 -0.573 2.15  5.03   5.84  6.57 3     2    </span>
+<span class="co">#&gt; 6  1.47  2.41  1.23   3.04  2.98 3     5</span></code></pre></div>
 </div>
 </div>
   </div>
