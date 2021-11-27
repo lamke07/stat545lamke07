@@ -1,0 +1,83 @@
+---
+title: "Causal Data Sets"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Causal Data Sets}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Setup and Overview
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(stat545lamke07)
+```
+
+The purpose of the `stat545lamke07` package is to be able to quickly test a method of interest
+on a toy data set. To that end, the functions starting with `causal_` aim to 
+create quick **causal** data sets where one can test a causal inference model.
+
+In causal inference, one is usually interested in whether a treatment $T$ has a measurable impact
+on the outcome $Y$. Often, there is associated data $X$ for the individuals.
+Under the [Rubin Causal Model](https://en.wikipedia.org/wiki/Rubin_causal_model), we consider the outcomes $Y$ to have
+potential outcomes $Y_0$ and $Y_1$, corresponding to the notion of "What would the outcome have been if the patient had received treatment 0 (or treatment 1)?".
+Under the *Fundamental Problem of Causal Inference*, both potential outcomes cannot be observed at the same time, which makes causal effect estimation hard.
+The general idea is to use the `generate_XY()` function to generate the basic data set $S = (X,Y)$ and then add the treatment effects.
+
+### Causal Data Sets with Binary Treatment
+
+The function `causal_XTY_binary()` builds on the `generate_XY()` function by selecting a treatment 1 with probability `treatment_prob`,
+and treatment 0 otherwise. The `treatment_effect` is then added to $Y$ when treatment 1 is selected. Note that, however, we can
+simulate the exact outcome $Y$ for both $Y_0$ and $Y_1$, since we have control over the generative probability model.
+
+```{r}
+df_causal <- causal_XTY_binary(n = 40, mu = 1:4, sigma = rep(2,4),
+                  beta_coefficients = 1:4, treatment_prob = 0.75, treatment_effect = 25)
+
+print(head(df_causal))
+```
+
+If we would like to turn this data set into a purely observational one, we only need to remove the potential outcomes.
+This allows us to test causal inference techniques where the potential outcomes $Y_0, Y_1$ are unknown.
+
+```{r}
+df_causal %>%
+  dplyr::select(-c("Y0", "Y1")) %>%
+  head()
+```
+
+### Causal Data Sets with Multiple Treatments
+
+Causal inference, however, need not be restricted to binary treatments only.
+The function `causal_XTY_multiple()` extends this notion of treatment to the case
+where more than one treatment is available. Rather than one single treatment probability,
+we now require a probability vector `treatment_prob` indicating how likely a treatment was chosen.
+The treatment effect, `treatment_effect` will also be a vector that adds the overall treatment effect to
+the existing outcomes $Y$, which serves as the baseline outcome. Again, we include the full information in 
+the data set.
+
+```{r}
+df_causal_multiple <- causal_XTY_multiple(n = 40, mu = rep(2, 5), sigma = 1:5,
+                     beta_coefficients = 1:5,
+                     treatment_prob = c(0.4, 0.1, 0.1, 0.2, 0.2),
+                     treatment_effect = 1:5)
+
+df_causal_multiple %>%
+  head()
+```
+
+Removing columns such as the potential outcomes $Y_i$ would turn this data set into
+a causal data set to be used for testing purposes (e.g. a statistical or a machine learning model).
+
+```{r}
+df_causal_multiple %>% 
+  dplyr::select(starts_with("X"), treatment, Y_observed)
+```
+

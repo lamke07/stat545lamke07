@@ -1,12 +1,12 @@
 Package: stat545lamke07
 Title: Collection of functions to create quick data sets
-Version: 1.0.2
+Version: 2.0.0
 Authors@R: 
     person(given = "Kevin ",
            family = "Lam",
            role = c("aut", "cre"),
            email = "kevin.lam@stat.ubc.ca")
-Description: A family of functions that can create quick toy data sets for modelling purposes.
+Description: A family of functions that can create quick toy data sets (normal and causal) for modelling purposes.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -14,8 +14,13 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
 Imports: 
     dplyr,
-    purrr
+    magrittr,
+    purrr,
+    rlang
 Suggests: 
+    rmarkdown,
+    knitr,
     testthat (>= 3.0.0),
     tibble
 Config/testthat/edition: 3
+VignetteBuilder: knitr

@@ -1,0 +1,8 @@
+pandoc: 2.14.0.3
+pkgdown: 1.6.1
+pkgdown_sha: ~
+articles:
+  causal_datasets: causal_datasets.html
+  normal_datasets: normal_datasets.html
+last_built: 2021-11-27T21:28Z
+
