@@ -1,3 +1,6 @@
+# stat545lamke07 1.1.0
+
+* New pre-release update with additional functions to create causal data sets.
 
 # stat545lamke07 1.0.2
 
