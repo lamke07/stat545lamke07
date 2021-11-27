@@ -66,10 +66,11 @@ generate_X_cat <- function(n = 100, mu = rep(0,10), sigma = rep(1,10), no_of_cat
   if(length(no_of_cat) < 1) stop("no_of_cat must contain at least one entry")
   if(any(no_of_cat %% 1 != 0) | any(no_of_cat <= 0)) stop("no_of_cat must contain positive integers. Supplied no_of_cat: ", no_of_cat)
 
+  # Generate standard data set
   out <- generate_X(n = n, mu = mu, sigma = sigma)
-
   p <- ncol(out)
 
+  # Add categorical variables
   out_cat <- suppressMessages(purrr::map_dfc(no_of_cat, ~sample(LETTERS[1:(.x)], n, replace = TRUE))) %>%
     dplyr::mutate(dplyr::across(dplyr::everything(), factor))
   colnames(out_cat) <- paste0("X", (p+1):(p+length(no_of_cat)))
@@ -93,7 +94,7 @@ generate_X_cat <- function(n = 100, mu = rep(0,10), sigma = rep(1,10), no_of_cat
 #'
 #' @return An \eqn{n \times (p+1)} dimensional data frame given by \eqn{S = (X,Y)}.
 #' In the base case, the columns \eqn{X_i} are sampled from \eqn{N(0,1)} and the coefficients are all 1.
-#' We also have \eqn{n = 100} and \eqn{p = 10}.
+#' We also have \eqn{n = 100} and \eqn{p = 10}, with beta-coefficients 1 to 10.
 #' @examples
 #' generate_XY()
 #' generate_XY(n = 40, mu = 1:10, sigma = rep(1, 10), beta_coefficients = 1:10)
@@ -104,10 +105,13 @@ generate_XY <- function(n = 100, mu = rep(0, 10), sigma = rep(1,10), beta_coeffi
 
   if(length(mu) != length(beta_coefficients)) stop("mu and beta_coefficients do not have the same length. Length of mu: ", length(mu), ". Length of beta_coefficients: ", length(beta_coefficients))
 
+  # Generate standard data set
   out <- generate_X(n = n, mu = mu, sigma = sigma)
 
+  # Compute outcomes Y
   Y = as.vector(as.matrix(out) %*% beta_coefficients)
 
+  # Combine the data frame with the outcomes
   out <- dplyr::mutate(out, Y = Y)
 
   return(out)

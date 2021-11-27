@@ -15,7 +15,8 @@ RoxygenNote: 7.1.2
 Imports: 
     dplyr,
     magrittr,
-    purrr
+    purrr,
+    rlang
 Suggests: 
     testthat (>= 3.0.0),
     tibble

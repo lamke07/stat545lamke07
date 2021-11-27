@@ -29,7 +29,7 @@ and two additional categorical columns of \eqn{X_2} are added.
 Creates a data set \eqn{S = (X_1, X_2)} where the columns of \eqn{X_1}
 are sampled from an independent Gaussian distribution with mean \eqn{\mu_i} and
 standard deviation \eqn{\sigma_i}, i.e. \eqn{N(\mu_i, \sigma_i^2)},
-and the columns of \eqn{X_2} are categorical, sampled with replacement from a given number of categories.
+and the columns of \eqn{X_2} are categorical, sampled with replacement from a given number of categories (indexed by numbers).
 The final dimension will be \eqn{n \times (p_1 + p_2)},
 where \eqn{p_1} is the number of columns in \eqn{X_1} and \eqn{p_2} is the number of columns in \eqn{X_2},
 with the number of data points \eqn{n} to be specified.
