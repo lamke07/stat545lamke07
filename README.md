@@ -5,6 +5,8 @@
 
 Note: This package was created as part of the [STAT545B Assignment
 4](https://stat545.stat.ubc.ca/assignments/assignment-b4/) submission.
+The corresponding website can be found under this link:
+<https://lamke07.github.io/stat545lamke07/index.html>.
 
 The goal of `stat545lamke07` is to have a collection of functions that
 can quickly create toy data sets to test a statistical or machine
