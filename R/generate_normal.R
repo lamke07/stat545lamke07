@@ -1,19 +1,20 @@
-#' @title Simulating a normal data set \eqn{S = (X)}.
+#' @title Simulate a normal data set \eqn{S = (X)}.
 #'
-#' @description Creates a data set \eqn{S = (X)} where the columns of \eqn{X}
+#' @description Creates a toy data set \eqn{S = (X)} where the columns of \eqn{X}
 #' are sampled from an independent Gaussian distribution with mean \eqn{\mu_i} and
 #' standard deviation \eqn{\sigma_i}, i.e. \eqn{N(\mu_i, \sigma_i^2)}.
 #' The final dimension will be \eqn{n \times p},
 #' with the number of data points \eqn{n} to be specified.
 #'
-#' @param n desired number of data points in the data set.
-#' @param mu a \eqn{p}-dimensional vector of means  for \eqn{\mu}.
-#' @param sigma  a \eqn{p}-dimensional vector of non-negative standard deviations for \eqn{\sigma}.
+#' @param n The desired number of data points in the data set.
+#' @param mu A \eqn{p}-dimensional vector of means  for \eqn{\mu}.
+#' @param sigma  A \eqn{p}-dimensional vector of non-negative standard deviations for \eqn{\sigma}.
 #'
 #' @return An \eqn{n \times p} dimensional data frame given by \eqn{S = (X)}.
-#' In the base case, the columns \eqn{X_i} are sampled from \eqn{N(0,1)}, \eqn{n = 100} and \eqn{p = 10}.
+#' In the default case, the columns \eqn{X_i} are sampled from \eqn{N(0,1)}, \eqn{n = 100} and \eqn{p = 10}.
 #' @examples
 #' generate_X()
+#'
 #' generate_X(n = 40, mu = 1:10, sigma = rep(1, 10))
 #' @export
 generate_X <- function(n = 100, mu = rep(0,10), sigma = rep(1,10)){
@@ -39,27 +40,28 @@ generate_X <- function(n = 100, mu = rep(0,10), sigma = rep(1,10)){
   return(out)
 }
 
-#' @title Simulating a normal data set \eqn{S = (X, X_{cat})} that includes categorical variables.
+#' @title Simulate a normal data set \eqn{S = (X, X_{cat})} that includes categorical variables.
 #'
-#' @description Creates a data set \eqn{S = (X, X_{cat})} where the columns of \eqn{X}
+#' @description Creates a toy data set \eqn{S = (X, X_{cat})} where the columns of \eqn{X}
 #' are sampled from an independent Gaussian distribution with mean \eqn{\mu_i} and
 #' standard deviation \eqn{\sigma_i}, i.e. \eqn{N(\mu_i, \sigma_i^2)},
-#' and the columns of \eqn{X_{cat}} are categorical, sampled with replacement from a given number of categories (indexed by numbers).
+#' and the columns of \eqn{X_{cat}} are categorical, sampled with replacement from a given number of categories (indexed by integers).
 #' The final dimension will be \eqn{n \times (p_1 + p_2)},
 #' where \eqn{p_1} is the number of columns in \eqn{X} and \eqn{p_2} is the number of columns in \eqn{X_{cat}},
 #' with the number of data points \eqn{n} to be specified.
 #'
-#' @param n desired number of data points in the data set.
-#' @param mu a \eqn{p_1}-dimensional vector of means for \eqn{\mu}.
-#' @param sigma  a \eqn{p_1}-dimensional vector of non-negative standard deviations for \eqn{\sigma}.
-#' @param no_of_cat a \eqn{p_2}-dimensional vector where the entries indicate the number of categories desired for each column of \eqn{X_{cat}}.
+#' @param n The desired number of data points in the data set.
+#' @param mu A \eqn{p_1}-dimensional vector of means for \eqn{\mu}.
+#' @param sigma  A \eqn{p_1}-dimensional vector of non-negative standard deviations for \eqn{\sigma}.
+#' @param no_of_cat A \eqn{p_2}-dimensional vector where the entries indicate the number of categories desired for each column of \eqn{X_{cat}}.
 #'
 #' @return An \eqn{n \times (p_1 + p_2)} dimensional data frame given by \eqn{S = (X, X_{cat})}.
-#' In the base case, the columns of \eqn{X} are sampled from \eqn{N(0,1)}, \eqn{n = 100} and \eqn{p_1 = 10, p_2 = 2},
-#' and two additional categorical columns of \eqn{X_{cat}} are added.
+#' In the default case, the columns of \eqn{X} are sampled from \eqn{N(0,1)}, \eqn{n = 100} and \eqn{p_1 = 10, p_2 = 2},
+#' i.e. two additional categorical columns of \eqn{X_{cat}} are added. The columns of \eqn{X_{cat}} are factors.
 #' @examples
 #' generate_X_cat()
-#' generate_X_cat(n = 40, mu = 1:10, sigma = rep(1, 10), no_of_cat = c(2,3))
+#'
+#' generate_X_cat(n = 40, mu = 1:6, sigma = rep(1, 6), no_of_cat = c(2,3,5))
 #' @export
 generate_X_cat <- function(n = 100, mu = rep(0,10), sigma = rep(1,10), no_of_cat = c(4,5)){
   if(any(is.na(no_of_cat))) stop("no_of_cat must be not NA")
@@ -71,7 +73,7 @@ generate_X_cat <- function(n = 100, mu = rep(0,10), sigma = rep(1,10), no_of_cat
   p <- ncol(out)
 
   # Add categorical variables
-  out_cat <- suppressMessages(purrr::map_dfc(no_of_cat, ~sample(LETTERS[1:(.x)], n, replace = TRUE))) %>%
+  out_cat <- suppressMessages(purrr::map_dfc(no_of_cat, ~sample(.x, n, replace = TRUE))) %>%
     dplyr::mutate(dplyr::across(dplyr::everything(), factor))
   colnames(out_cat) <- paste0("X", (p+1):(p+length(no_of_cat)))
 
@@ -79,12 +81,12 @@ generate_X_cat <- function(n = 100, mu = rep(0,10), sigma = rep(1,10), no_of_cat
 }
 
 
-#' @title Simulating a normal data set \eqn{S = (X,Y)}, where \eqn{Y = X^T \beta}.
+#' @title Simulate a normal data set \eqn{S = (X,Y)}, where \eqn{Y = X^T \beta}.
 #'
-#' @description Creates a data set \eqn{S = (X,Y)} where the columns of \eqn{X}
+#' @description Creates a toy data set \eqn{S = (X,Y)} where the columns of \eqn{X}
 #' are sampled from an independent Gaussian distribution with mean \eqn{\mu_i} and
 #' standard deviation \eqn{\sigma_i}, i.e. \eqn{N(\mu_i, \sigma_i^2)}. The response \eqn{Y}
-#' is given by \eqn{Y = X\beta}. The final dimension will be \eqn{n \times (p + 1)},
+#' is given by \eqn{Y = X^T \beta}. The final dimension will be \eqn{n \times (p + 1)},
 #' with the number of data points \eqn{n} to be specified.
 #'
 #' @param n desired number of data points in the data set.
@@ -93,11 +95,12 @@ generate_X_cat <- function(n = 100, mu = rep(0,10), sigma = rep(1,10), no_of_cat
 #' @param beta_coefficients a \eqn{p}-dimensional vector of coefficients for \eqn{\beta}.
 #'
 #' @return An \eqn{n \times (p+1)} dimensional data frame given by \eqn{S = (X,Y)}.
-#' In the base case, the columns \eqn{X_i} are sampled from \eqn{N(0,1)} and the coefficients are all 1.
-#' We also have \eqn{n = 100} and \eqn{p = 10}, with beta-coefficients 1 to 10.
+#' In the base case, the columns \eqn{X_i} are sampled from \eqn{N(0,1)}.
+#' We also have \eqn{n = 100} and \eqn{p = 10}, with \eqn{beta}-coefficients 1 to 10.
 #' @examples
 #' generate_XY()
-#' generate_XY(n = 40, mu = 1:10, sigma = rep(1, 10), beta_coefficients = 1:10)
+#'
+#' generate_XY(n = 60, mu = 1:4, sigma = rep(1, 4), beta_coefficients = 1:4)
 #' @export
 generate_XY <- function(n = 100, mu = rep(0, 10), sigma = rep(1,10), beta_coefficients = 1:10){
   if(any(is.na(beta_coefficients))) stop("beta_coefficients must not be NA")

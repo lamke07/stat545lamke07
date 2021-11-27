@@ -2,7 +2,7 @@
 % Please edit documentation in R/generate_normal.R
 \name{generate_XY}
 \alias{generate_XY}
-\title{Simulating a normal data set \eqn{S = (X,Y)}, where \eqn{Y = X^T \beta}.}
+\title{Simulate a normal data set \eqn{S = (X,Y)}, where \eqn{Y = X^T \beta}.}
 \usage{
 generate_XY(
   n = 100,
@@ -22,17 +22,18 @@ generate_XY(
 }
 \value{
 An \eqn{n \times (p+1)} dimensional data frame given by \eqn{S = (X,Y)}.
-In the base case, the columns \eqn{X_i} are sampled from \eqn{N(0,1)} and the coefficients are all 1.
-We also have \eqn{n = 100} and \eqn{p = 10}, with beta-coefficients 1 to 10.
+In the base case, the columns \eqn{X_i} are sampled from \eqn{N(0,1)}.
+We also have \eqn{n = 100} and \eqn{p = 10}, with \eqn{beta}-coefficients 1 to 10.
 }
 \description{
-Creates a data set \eqn{S = (X,Y)} where the columns of \eqn{X}
+Creates a toy data set \eqn{S = (X,Y)} where the columns of \eqn{X}
 are sampled from an independent Gaussian distribution with mean \eqn{\mu_i} and
 standard deviation \eqn{\sigma_i}, i.e. \eqn{N(\mu_i, \sigma_i^2)}. The response \eqn{Y}
-is given by \eqn{Y = X\beta}. The final dimension will be \eqn{n \times (p + 1)},
+is given by \eqn{Y = X^T \beta}. The final dimension will be \eqn{n \times (p + 1)},
 with the number of data points \eqn{n} to be specified.
 }
 \examples{
 generate_XY()
-generate_XY(n = 40, mu = 1:10, sigma = rep(1, 10), beta_coefficients = 1:10)
+
+generate_XY(n = 60, mu = 1:4, sigma = rep(1, 4), beta_coefficients = 1:4)
 }

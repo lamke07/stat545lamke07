@@ -6,9 +6,9 @@
 \usage{
 causal_XTY_multiple(
   n = 100,
-  mu = rep(0, 4),
-  sigma = rep(1, 4),
-  beta_coefficients = 1:4,
+  mu = rep(0, 3),
+  sigma = rep(1, 3),
+  beta_coefficients = 1:3,
   treatment_prob = rep(0.25, 4),
   treatment_effect = c(10, 20, 30, 40)
 )
@@ -28,8 +28,8 @@ causal_XTY_multiple(
 }
 \value{
 A causal data set \eqn{S = (X,Y_i, T, Y_{obs})} with multiple potential outcomes.
-In the base case, the columns \eqn{X_i} are sampled from \eqn{N(0,1)} and the coefficients are all 1.
-We also have \eqn{n = 100}, \eqn{p = 4}, with beta-coefficients 1 to 10, where \eqn{p} corresponds to the number of columns in \eqn{X}.
+In the default case, the \eqn{p} columns \eqn{X_i} are sampled from \eqn{N(0,1)}, with \eqn{beta}-coefficients 1 to 3 for the base outcome \eqn{Y}.
+We also have \eqn{n = 100}, \eqn{p = 3}, where \eqn{p} corresponds to the number of columns in \eqn{X}.
 The treatment probabilities are equally likely.
 }
 \description{
@@ -39,11 +39,12 @@ standard deviation \eqn{\sigma_i}, i.e. \eqn{N(\mu_i, \sigma_i^2)}.
 A treatment \eqn{T} is sampled, where more than 2 treatments are possible.
 The observations \eqn{Y_i} correspond to the outcome if the treatment \eqn{i} is applied.
 The outcome \eqn{Y = X^T \beta} is assumed to depend on \eqn{X} in a linear fashion, and the
-treatment effect of treatment \eqn{i} is additive.
+treatment effect of treatment \eqn{T = i} is additive.
 See Causality (Pearl 2009) for further details and a general introduction to causal inference.
 }
 \examples{
 causal_XTY_multiple()
+
 causal_XTY_multiple(n = 40, mu = rep(2, 7), sigma = 1:7,
                     beta_coefficients = 1:7,
                     treatment_prob = c(0.4, 0.1, 0.1, 0.2, 0.2),

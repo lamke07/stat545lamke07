@@ -104,28 +104,28 @@
 
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df_causal</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 8</span>
-<span class="co">#&gt;       X1    X2    X3    X4 treatment    Y0    Y1 Y_observed</span>
-<span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;</span>
-<span class="co">#&gt; 1  0.678 1.22  0.250 -1.24         1 -1.07  23.9       23.9</span>
-<span class="co">#&gt; 2 -0.407 0.917 1.65   1.70         1 13.2   38.2       38.2</span>
-<span class="co">#&gt; 3 -1.57  3.49  4.03   2.47         1 27.4   52.4       52.4</span>
-<span class="co">#&gt; 4  3.04  2.10  4.53   3.68         1 35.5   60.5       60.5</span>
-<span class="co">#&gt; 5  0.728 2.20  2.60   6.27         1 38.0   63.0       63.0</span>
-<span class="co">#&gt; 6  3.17  2.00  4.21   5.65         0 42.4   67.4       42.4</span></code></pre></div>
+<span class="co">#&gt;      X1     X2      X3    X4 treatment    Y0    Y1 Y_observed</span>
+<span class="co">#&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;</span>
+<span class="co">#&gt; 1  4.31  2.16   1.67    6.65         1  40.2  65.2       65.2</span>
+<span class="co">#&gt; 2  4.49  2.15  -0.0271  5.35         0  30.1  55.1       30.1</span>
+<span class="co">#&gt; 3  2.05  2.77   5.11    4.70         1  41.7  66.7       66.7</span>
+<span class="co">#&gt; 4 -2.30 -3.89   3.76    5.09         0  21.6  46.6       21.6</span>
+<span class="co">#&gt; 5  5.05  0.864  1.39    5.25         1  31.9  56.9       56.9</span>
+<span class="co">#&gt; 6  1.54  1.74   3.29    5.32         1  36.2  61.2       61.2</span></code></pre></div>
 <p>If we would like to turn this data set into a purely observational one, we only need to remove the potential outcomes. This allows us to test causal inference techniques where the potential outcomes <span class="math inline">\(Y_0, Y_1\)</span> are unknown.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df_causal</span> <span class="op"><a href="../reference/%&gt;%.html">%&gt;%</a></span>
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Y0"</span>, <span class="st">"Y1"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="../reference/%&gt;%.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 6</span>
-<span class="co">#&gt;       X1    X2    X3    X4 treatment Y_observed</span>
-<span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;</span>
-<span class="co">#&gt; 1  0.678 1.22  0.250 -1.24         1       23.9</span>
-<span class="co">#&gt; 2 -0.407 0.917 1.65   1.70         1       38.2</span>
-<span class="co">#&gt; 3 -1.57  3.49  4.03   2.47         1       52.4</span>
-<span class="co">#&gt; 4  3.04  2.10  4.53   3.68         1       60.5</span>
-<span class="co">#&gt; 5  0.728 2.20  2.60   6.27         1       63.0</span>
-<span class="co">#&gt; 6  3.17  2.00  4.21   5.65         0       42.4</span></code></pre></div>
+<span class="co">#&gt;      X1     X2      X3    X4 treatment Y_observed</span>
+<span class="co">#&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;</span>
+<span class="co">#&gt; 1  4.31  2.16   1.67    6.65         1       65.2</span>
+<span class="co">#&gt; 2  4.49  2.15  -0.0271  5.35         0       30.1</span>
+<span class="co">#&gt; 3  2.05  2.77   5.11    4.70         1       66.7</span>
+<span class="co">#&gt; 4 -2.30 -3.89   3.76    5.09         0       21.6</span>
+<span class="co">#&gt; 5  5.05  0.864  1.39    5.25         1       56.9</span>
+<span class="co">#&gt; 6  1.54  1.74   3.29    5.32         1       61.2</span></code></pre></div>
 </div>
 <div id="causal-data-sets-with-multiple-treatments" class="section level3">
 <h3 class="hasAnchor">
@@ -143,9 +143,9 @@
 <table class="table">
 <colgroup>
 <col width="7%">
-<col width="7%">
+<col width="8%">
+<col width="8%">
 <col width="6%">
-<col width="7%">
 <col width="7%">
 <col width="7%">
 <col width="7%">
@@ -173,94 +173,94 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="right">0.3816584</td>
-<td align="right">4.217980</td>
-<td align="right">1.406162</td>
-<td align="right">3.3616024</td>
-<td align="right">2.428018</td>
-<td align="right">38.622602</td>
-<td align="right">39.622602</td>
-<td align="right">40.622602</td>
-<td align="right">41.622602</td>
-<td align="right">42.622602</td>
-<td align="right">43.622602</td>
+<td align="right">1.6636487</td>
+<td align="right">-0.4767569</td>
+<td align="right">1.5652974</td>
+<td align="right">1.534008</td>
+<td align="right">2.176927</td>
+<td align="right">22.426692</td>
+<td align="right">23.426692</td>
+<td align="right">24.426692</td>
+<td align="right">25.426692</td>
+<td align="right">26.426692</td>
+<td align="right">27.426692</td>
 <td align="right">2</td>
-<td align="right">40.622602</td>
+<td align="right">24.426692</td>
 </tr>
 <tr class="even">
-<td align="right">2.3554459</td>
-<td align="right">0.500644</td>
-<td align="right">5.056755</td>
-<td align="right">2.8236744</td>
-<td align="right">-3.377719</td>
-<td align="right">12.933101</td>
-<td align="right">13.933101</td>
-<td align="right">14.933101</td>
-<td align="right">15.933101</td>
-<td align="right">16.933101</td>
-<td align="right">17.933101</td>
+<td align="right">2.1673777</td>
+<td align="right">0.7337531</td>
+<td align="right">4.2344466</td>
+<td align="right">3.184142</td>
+<td align="right">4.435957</td>
+<td align="right">51.254577</td>
+<td align="right">52.254577</td>
+<td align="right">53.254577</td>
+<td align="right">54.254577</td>
+<td align="right">55.254577</td>
+<td align="right">56.254577</td>
 <td align="right">4</td>
-<td align="right">16.933101</td>
+<td align="right">55.254577</td>
 </tr>
 <tr class="odd">
-<td align="right">1.1582396</td>
-<td align="right">-1.762815</td>
-<td align="right">1.531477</td>
-<td align="right">1.9614767</td>
-<td align="right">-3.385804</td>
-<td align="right">-6.856073</td>
-<td align="right">-5.856073</td>
-<td align="right">-4.856073</td>
-<td align="right">-3.856073</td>
-<td align="right">-2.856073</td>
-<td align="right">-1.856073</td>
+<td align="right">0.7955377</td>
+<td align="right">3.2578039</td>
+<td align="right">-1.6857992</td>
+<td align="right">1.855393</td>
+<td align="right">-1.419306</td>
+<td align="right">2.578791</td>
+<td align="right">3.578791</td>
+<td align="right">4.578791</td>
+<td align="right">5.578791</td>
+<td align="right">6.578791</td>
+<td align="right">7.578791</td>
 <td align="right">1</td>
-<td align="right">-5.856073</td>
+<td align="right">3.578791</td>
 </tr>
 <tr class="even">
-<td align="right">0.4828713</td>
-<td align="right">3.538094</td>
-<td align="right">5.078787</td>
-<td align="right">0.9556616</td>
-<td align="right">2.655743</td>
-<td align="right">39.896784</td>
-<td align="right">40.896784</td>
-<td align="right">41.896784</td>
-<td align="right">42.896784</td>
-<td align="right">43.896784</td>
-<td align="right">44.896784</td>
-<td align="right">1</td>
-<td align="right">40.896784</td>
+<td align="right">1.9885328</td>
+<td align="right">2.2938638</td>
+<td align="right">-1.5377061</td>
+<td align="right">5.021304</td>
+<td align="right">-4.825023</td>
+<td align="right">-2.076758</td>
+<td align="right">-1.076758</td>
+<td align="right">-0.076758</td>
+<td align="right">0.923242</td>
+<td align="right">1.923242</td>
+<td align="right">2.923242</td>
+<td align="right">4</td>
+<td align="right">1.923242</td>
 </tr>
 <tr class="odd">
-<td align="right">1.4045491</td>
-<td align="right">3.012891</td>
-<td align="right">3.406971</td>
-<td align="right">0.2180680</td>
-<td align="right">14.801987</td>
-<td align="right">92.533455</td>
-<td align="right">93.533455</td>
-<td align="right">94.533455</td>
-<td align="right">95.533455</td>
-<td align="right">96.533455</td>
-<td align="right">97.533455</td>
-<td align="right">1</td>
-<td align="right">93.533455</td>
+<td align="right">3.4668623</td>
+<td align="right">3.6632077</td>
+<td align="right">0.2155323</td>
+<td align="right">3.185854</td>
+<td align="right">4.153416</td>
+<td align="right">44.950370</td>
+<td align="right">45.950370</td>
+<td align="right">46.950370</td>
+<td align="right">47.950370</td>
+<td align="right">48.950370</td>
+<td align="right">49.950370</td>
+<td align="right">4</td>
+<td align="right">48.950370</td>
 </tr>
 <tr class="even">
-<td align="right">1.0796799</td>
-<td align="right">3.527561</td>
-<td align="right">6.724628</td>
-<td align="right">7.6339344</td>
-<td align="right">-1.972080</td>
-<td align="right">48.984022</td>
-<td align="right">49.984022</td>
-<td align="right">50.984022</td>
-<td align="right">51.984022</td>
-<td align="right">52.984022</td>
-<td align="right">53.984022</td>
-<td align="right">5</td>
-<td align="right">53.984022</td>
+<td align="right">0.9575677</td>
+<td align="right">-0.3984858</td>
+<td align="right">6.1849282</td>
+<td align="right">3.596466</td>
+<td align="right">-3.794644</td>
+<td align="right">14.128026</td>
+<td align="right">15.128026</td>
+<td align="right">16.128026</td>
+<td align="right">17.128026</td>
+<td align="right">18.128026</td>
+<td align="right">19.128026</td>
+<td align="right">4</td>
+<td align="right">18.128026</td>
 </tr>
 </tbody>
 </table>

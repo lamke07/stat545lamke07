@@ -72,7 +72,8 @@ m1 <- lm(Y~ X1 + X2 + X3 + X4, data = df)
 summary(m1)
 ```
 
-We have also included an option to create causal toy data sets.
+We have also included an option to create causal toy data sets,
+where the treatment effect is additive and the relationship between the outcomes $Y$ and covariates $X$ is linear.
 
 ```
 # Obtain a quick causal data set.

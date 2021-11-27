@@ -14,37 +14,38 @@ causal_XTY_binary(
 )
 }
 \arguments{
-\item{n}{desired number of data points in the data set.}
+\item{n}{The desired number of data points in the data set.}
 
-\item{mu}{a \eqn{p}-dimensional vector of means  for \eqn{\mu}.}
+\item{mu}{A \eqn{p}-dimensional vector of means  for \eqn{\mu}.}
 
-\item{sigma}{a \eqn{p}-dimensional vector of non-negative standard deviations for \eqn{\sigma}.}
+\item{sigma}{A \eqn{p}-dimensional vector of non-negative standard deviations for \eqn{\sigma}.}
 
-\item{beta_coefficients}{a \eqn{p}-dimensional vector of coefficients for \eqn{\beta}.}
+\item{beta_coefficients}{A \eqn{p}-dimensional vector of coefficients for \eqn{\beta}.}
 
-\item{treatment_prob}{a probability between 0 and 1 specifying the probability of treatment assignment \eqn{p_{treatment}}.}
+\item{treatment_prob}{A probability between 0 and 1 specifying the probability of treatment assignment \eqn{p_{treatment}}.}
 
-\item{treatment_effect}{the average treatment between two potential outcomes \eqn{Y_0} and \eqn{Y_1}.}
+\item{treatment_effect}{The average treatment between two potential outcomes \eqn{Y_0} and \eqn{Y_1}.}
 }
 \value{
 A causal data set \eqn{S = (X,T,Y_0, Y_1, Y_{obs})}.
-In the base case, the columns \eqn{X_i} are sampled from \eqn{N(0,1)} and the coefficients are all 1.
+In the default case, the \eqn{p} columns \eqn{X_i} are sampled from \eqn{N(0,1)} and the coefficients are all 1.
 We also have \eqn{n = 100}, \eqn{p = 4}, with beta-coefficients 1 to 10.
-The base treatment probability is 0.5 (i.e. a coin flip), with the default average treatment effect being 10.
+The base treatment probability is 0.5 (i.e. a coin flip), with the default average treatment effect set to 10.
 }
 \description{
 Creates a causal data set \eqn{S = (X,T,Y_0, Y_1, Y_{obs})} for causal inference.
 The \eqn{p} columns of \eqn{X} are sampled from an independent Gaussian distribution with mean \eqn{\mu_i} with
 standard deviation \eqn{\sigma_i}, i.e. \eqn{N(\mu_i, \sigma_i^2)}.
-A binary treatment \eqn{T} taking values 0 or 1 is sampled with probability \eqn{p_{treatment}}.
-The observations \eqn{Y_0, Y_1} correspond to the outcome if the treatment \eqn{T} is 0 or 1, respectively,
-while \eqn{T} is the actual treatment observed and corresponds to \eqn{Y_{obs}}.
-The outcome \eqn{Y  = X^T \beta} is assumed to depend on \eqn{X} in a linear fashion,
-so the average treatment effect can be pre-specified to obtain the right data set.
+The observations \eqn{Y_0, Y_1} correspond to the outcome if the treatment \eqn{T} is 0 or 1, respectively.
+A binary treatment \eqn{T} taking values 0 or 1 is sampled with probability \eqn{p_{treatment}}
+and \eqn{Y_{obs}} is obtained by choosing the potential outcome (either \eqn{Y_0} or \eqn{Y_1}) corresponding to the sampled treatment \eqn{T}.
+The base outcome \eqn{Y  = X^T \beta} is assumed to depend on \eqn{X} in a linear fashion,
+and the average treatment effect corresponds to the additive effect of obtaining treatment \eqn{T = 1}.
 See Causality (Pearl 2009) for further details and a general introduction to causal inference.
 }
 \examples{
 causal_XTY_binary()
-causal_XTY_binary(n = 40, mu = 1:10, sigma = rep(1, 10),
-                  beta_coefficients = 1:10, treatment_prob = 0.75, treatment_effect = 25)
+
+causal_XTY_binary(n = 40, mu = 1:7, sigma = rep(1, 7),
+                  beta_coefficients = 1:7, treatment_prob = 0.75, treatment_effect = 25)
 }
