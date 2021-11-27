@@ -1,3 +1,7 @@
+# stat545lamke07 2.0.1
+
+* Minor changes to the README and the version number.
+
 # stat545lamke07 2.0.0
 
 * Second major release of the R-package `stat545lamke07`.
