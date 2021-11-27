@@ -19,10 +19,11 @@ knitr::opts_chunk$set(
 <!-- badges: end -->
 
 The goal of `stat545lamke07` is to have a collection of functions that can 
-quickly create toy data sets to test their statistical or machine learning
+quickly create toy data sets to test a statistical or machine learning
 model on. Many times one is interested in using simulated data, but these
-often need to be written out quickly. The `stat545lamke07` package therefore
-aims to make this process easier and in an orderly way.
+often need to be written out quickly. The `stat545lamke07` package
+aims to make this process easier and in an orderly way and provides simple data sets,
+including **causal** data sets.
 
 ## Installation
 
@@ -34,13 +35,13 @@ with:
 devtools::install_github("lamke07/stat545lamke07")
 ```
 
-## Example
+## Basic Examples
 
 This is a basic example which shows you how to solve a common problem: the `generate_XY` function
 creates a data set where $Y$ is a linear combination of the columns in $X$.
 As such, a linear model on the full data set is expected to give a perfect fit.
 
-```{r example}
+```{r}
 library(stat545lamke07)
 
 # Obtain a quick data set S = (X,Y)
@@ -61,7 +62,7 @@ It is possible to specify the individual parameters of the normal distribution f
 
 Below we have given an example of how one could possibly specify the parameters. We need to make sure that all the dimensions are correct.
 
-```{r example2}
+```{r}
 # Obtain a quick data set S = (X,Y)
 df <- generate_XY(n = 1000, mu = 1:10, sigma = 1:10, beta_coefficients = 1:10)
 print(head(df))
@@ -69,4 +70,12 @@ print(head(df))
 # Test a linear model
 m1 <- lm(Y~ X1 + X2 + X3 + X4, data = df)
 summary(m1)
+```
+
+We have also included an option to create causal toy data sets.
+
+```{r}
+# Obtain a quick causal data set.
+df <- causal_XTY_binary()
+print(head(df))
 ```

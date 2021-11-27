@@ -1,6 +1,6 @@
 Package: stat545lamke07
 Title: Collection of functions to create quick data sets
-Version: 1.0.2
+Version: 1.1.0
 Authors@R: 
     person(given = "Kevin ",
            family = "Lam",
